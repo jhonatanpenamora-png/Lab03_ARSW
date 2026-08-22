@@ -1,5 +1,9 @@
 # ARSW - Laboratory 3 - Relic Rush
 ## Thread Safety, Coordination and Deadlock Prevention - Java 21
+## Integrantes:
+### Juan Sebastian Murcia Yanquen
+### Jhonatan stiven peña mora
+### jhonatan madero
 
 ## Implemented solution
 
