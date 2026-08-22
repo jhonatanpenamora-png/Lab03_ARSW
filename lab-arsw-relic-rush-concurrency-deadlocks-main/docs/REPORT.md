@@ -6,7 +6,7 @@
 |-----------------------------|--------------|------------------------|
 | Juan Sebastian Murcia       | 1000095196   | JuanMurciaY            |
 | `Jhonatan Stiven Peña Mora` | `1000097603` | `Jhonatanpenamora-png` |
-| Jhonatan Madero             | `[ID]`       | `[GITHUB]`             |
+| Jhonatan Madero             | `1000097206`       | `jhonatanmadero`             |
 
 Repository: `https://github.com/jhonatanpenamora-png/Lab03_ARSW`
 
