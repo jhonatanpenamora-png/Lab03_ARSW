@@ -4,7 +4,7 @@
 
 | Student | ID | GitHub |
 |---|---|---|
-| `[STUDENT 1]` | `[ID]` | `[GITHUB]` |
+| Juan Sebastian Murcia | 1000095196 | JuanMurciaY |
 | `[STUDENT 2]` | `[ID]` | `[GITHUB]` |
 | Jhonatan Madero | `[ID]` | `[GITHUB]` |
 
