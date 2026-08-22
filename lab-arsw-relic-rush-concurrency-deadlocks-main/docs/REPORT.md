@@ -2,11 +2,11 @@
 
 ## Team
 
-| Student | ID | GitHub |
-|---|---|---|
-| Juan Sebastian Murcia | 1000095196 | JuanMurciaY |
-| `[STUDENT 2]` | `[ID]` | `[GITHUB]` |
-| Jhonatan Madero | `[ID]` | `[GITHUB]` |
+| Student                     | ID           | GitHub                 |
+|-----------------------------|--------------|------------------------|
+| Juan Sebastian Murcia       | 1000095196   | JuanMurciaY            |
+| `Jhonatan Stiven Peña Mora` | `1000097603` | `Jhonatanpenamora-png` |
+| Jhonatan Madero             | `[ID]`       | `[GITHUB]`             |
 
 Repository: `https://github.com/jhonatanpenamora-png/Lab03_ARSW`
 
