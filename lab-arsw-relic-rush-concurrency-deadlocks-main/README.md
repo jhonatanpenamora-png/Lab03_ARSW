@@ -1,5 +1,37 @@
 # ARSW - Laboratory 3 - Relic Rush
 ## Thread Safety, Coordination and Deadlock Prevention - Java 21
+## Integrantes:
+### Juan Sebastian Murcia Yanquen
+### Jhonatan stiven peña mora
+### jhonatan madero
+
+## Implemented solution
+
+This repository contains the completed concurrency solution:
+
+- `ForgeLedger` uses an `AtomicInteger` and a `ConcurrentLinkedQueue`.
+- `LockPair` acquires station monitors in ascending station-ID order.
+- Disjoint station pairs remain concurrent; there is no game-wide craft lock.
+- JUnit tests cover concurrent ledger writes, opposite lock orders, disjoint
+  station pairs, and the invariant at every completed round.
+- The architectural analysis is in [`docs/REPORT.md`](docs/REPORT.md).
+- The decision record is in
+  [`docs/ADR-001-deadlock-prevention.md`](docs/ADR-001-deadlock-prevention.md).
+- The three-person branch and commit workflow is in
+  [`docs/TEAM_WORKFLOW.md`](docs/TEAM_WORKFLOW.md).
+
+Quick verification:
+
+```bash
+mvn clean test
+mvn -q -DskipTests package
+java -cp target/classes edu.eci.arsw.relicrush.app.LedgerRaceProbe 64 5000
+java -cp target/classes edu.eci.arsw.relicrush.app.DeadlockProbe
+java -cp target/classes edu.eci.arsw.relicrush.app.InvariantProbe 128 8 100
+```
+
+Replace the team, repository, and final-commit placeholders in `docs/REPORT.md`
+before submitting.
 
 **Course:** Arquitecturas de Software - ARSW  
 **Period:** 2026-2  

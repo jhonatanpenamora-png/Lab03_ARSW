@@ -2,11 +2,11 @@ package edu.eci.arsw.relicrush.concurrency;
 
 import edu.eci.arsw.relicrush.model.ForgeStation;
 
+import java.util.Objects;
+
 /**
- * Starter implementation intentionally contains a deadlock risk.
- *
- * Students: do NOT replace this with one global lock. Preserve concurrency
- * between forge operations that use disjoint stations.
+ * Adquiere dos monitores de ForgeStation en orden global por ID para prevenir deadlock.
+ * Mantiene concurrencia entre pares de estaciones disjuntas.
  */
 public final class LockPair {
 
@@ -14,23 +14,28 @@ public final class LockPair {
     }
 
     public static void withBoth(ForgeStation first, ForgeStation second, Runnable action) {
-        // TODO LAB 3: This acquisition strategy can create circular wait.
-        // Fix it using a deterministic ordering strategy (or justify another
-        // deadlock-prevention approach) while preserving fine-grained locking.
-        synchronized (first) {
-            // This small delay makes the deadlock easier to reproduce in the starter.
-            sleepQuietly(2);
-            synchronized (second) {
+        Objects.requireNonNull(first, "first station must not be null");
+        Objects.requireNonNull(second, "second station must not be null");
+        Objects.requireNonNull(action, "action must not be null");
+
+        if (first == second) {
+            synchronized (first) {
                 action.run();
             }
+            return;
         }
-    }
 
-    private static void sleepQuietly(long millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+        if (first.id() == second.id()) {
+            throw new IllegalArgumentException("Dos estaciones distintas no pueden compartir el mismo ID: " + first.id());
+        }
+
+        ForgeStation lower = first.id() < second.id() ? first : second;
+        ForgeStation higher = first.id() < second.id() ? second : first;
+
+        synchronized (lower) {
+            synchronized (higher) {
+                action.run();
+            }
         }
     }
 }

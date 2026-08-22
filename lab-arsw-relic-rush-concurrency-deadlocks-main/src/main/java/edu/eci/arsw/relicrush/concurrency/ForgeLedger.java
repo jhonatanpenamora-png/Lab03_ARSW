@@ -2,30 +2,30 @@ package edu.eci.arsw.relicrush.concurrency;
 
 import edu.eci.arsw.relicrush.model.ForgeEvent;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Global match ledger.
  *
- * Starter implementation is intentionally NOT thread-safe.
+ * Thread-safe global ledger. Writers do not acquire a game-wide monitor:
+ * the counter uses an atomic read-modify-write operation and events are stored
+ * in a concurrent queue.
  */
 public final class ForgeLedger {
-    private int totalCrafted = 0;
-    private final List<ForgeEvent> events = new ArrayList<>();
+    private final AtomicInteger totalCrafted = new AtomicInteger();
+    private final Queue<ForgeEvent> events = new ConcurrentLinkedQueue<>();
 
     public void record(ForgeEvent event) {
-        // TODO LAB 3: ++ is a read-modify-write operation and ArrayList is not
-        // designed for concurrent writes. Fix both responsibilities without
-        // serializing the entire game behind one global monitor.
-        int next = totalCrafted + 1;
-        Thread.yield();
-        totalCrafted = next;
-        events.add(event);
+        events.add(Objects.requireNonNull(event, "event must not be null"));
+        totalCrafted.incrementAndGet();
     }
 
     public int totalCrafted() {
-        return totalCrafted;
+        return totalCrafted.get();
     }
 
     public int eventCount() {

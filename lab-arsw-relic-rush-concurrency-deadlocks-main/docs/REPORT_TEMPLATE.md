@@ -2,11 +2,11 @@
 
 ## Team
 
-| Student | ID | GitHub |
-|---|---|---|
-| | | |
-| | | |
-| | | |
+| Student | GitHub |
+|---|---|
+| Juan Sebastian Murcia Yanquen| JuanMurciaY |
+| |  |
+| |  |
 
 Repository: `URL`
 
